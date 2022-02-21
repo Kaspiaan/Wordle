@@ -54,7 +54,6 @@ def give_word_value_index():
     letter_dict_score = {}
     answers = get_answers()
     sorted_letters, letter_keys = analyse_letter_used()
-    print(sorted_letters)
     for i in answers:
         score_sum = 0
         for letter in list(set(i)):
@@ -63,4 +62,16 @@ def give_word_value_index():
     return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=True)}
 
 
-print(analyse_letter_location())
+def give_letter_value_relative():
+    letter_dict_score = {}
+    answers = get_answers()
+    letter_values = analyse_letter_location()
+    for i in answers:
+        score_sum = 0
+        for loc, letter in enumerate(list(set(i))):
+            score_sum += letter_values[letter][loc]
+        letter_dict_score[i] = score_sum
+    return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=True)}
+
+
+print(give_letter_value_relative())
