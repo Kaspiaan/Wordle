@@ -24,6 +24,20 @@ def analyse_letter_used():
     return sorted_letters, list(sorted_letters.keys())
 
 
+def analyse_letter_location():
+    letter_dict = {}
+    all_words = get_guesses() + get_answers()
+    for word in all_words:
+        letters = list(word)
+        for i, letter in enumerate(letters):
+            if letter in letter_dict:
+                letter_dict[letter] = [x + y for x, y in
+                                       zip(letter_dict[letter], [1 if x == i else 0 for x in range(len(word))])]
+            else:
+                letter_dict[letter] = [1 if x == i else 0 for x in range(len(word))]
+    return letter_dict
+
+
 def give_word_value_relative():
     letter_dict_score = {}
     answers = get_answers()
@@ -49,4 +63,4 @@ def give_word_value_index():
     return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=True)}
 
 
-print(give_word_value_relative())
+print(analyse_letter_location())
