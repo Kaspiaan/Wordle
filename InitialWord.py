@@ -33,7 +33,7 @@ def give_word_value_relative():
         for letter in list(set(i)):
             score_sum += sorted_letters[letter]
         letter_dict_score[i] = score_sum
-    return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=False)}
+    return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=True)}
 
 
 def give_word_value_index():
