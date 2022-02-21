@@ -67,17 +67,15 @@ def give_letter_value_relative():
     answers = get_answers()
     letter_values = analyse_letter_location()
     for i in answers:
-        print(i)
         score_sum = 0
+        # TODO: Make more elegant implementation of this
         used_letters = []
         for loc, letter in enumerate(i):
             if letter not in used_letters:
                 score_sum += letter_values[letter][loc]
                 used_letters.append(letter)
         letter_dict_score[i] = score_sum
-        print(score_sum)
-        break
-    #return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=True)}
+    return {k: v for k, v in sorted(letter_dict_score.items(), key=lambda item: item[1], reverse=True)}
 
 
 print(give_letter_value_relative())
